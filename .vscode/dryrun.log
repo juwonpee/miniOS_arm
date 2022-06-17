@@ -1,0 +1,28 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/juwonpee/projects/miniOS_arm'
+mkdir -p build/src/boot
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/boot/Entry.os src/boot/Entry.S
+mkdir -p build/src/boot
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/boot/Handler.o src/boot/Handler.c
+mkdir -p build/src/boot
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/boot/Main.o src/boot/Main.c
+mkdir -p build/src/hal
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/hal/Interrupt.o src/hal/Interrupt.c
+mkdir -p build/src/hal
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/hal/Regs.o src/hal/Regs.c
+mkdir -p build/src/hal
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/hal/Timer.o src/hal/Timer.c
+mkdir -p build/src/hal
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/hal/Uart.o src/hal/Uart.c
+mkdir -p build/src/lib
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/lib/asm.o src/lib/asm.c
+mkdir -p build/src/lib
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/lib/stdio.o src/lib/stdio.c
+mkdir -p build/src/lib
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/lib/stdlib.o src/lib/stdlib.c
+mkdir -p build/src/kernel
+arm-none-eabi-gcc -march=armv7-a -mcpu=cortex-a8 -marm -I src/include -I src/hal -I src/lib -I src/kernel -c -g -std=c11 -mthumb-interwork -o build/src/kernel/task.o src/kernel/task.c
+arm-none-eabi-gcc -n -T ./linker.ld -o build/miniOS_arm.axf  build/src/boot/Entry.os  build/src/boot/Handler.o  build/src/boot/Main.o  build/src/hal/Interrupt.o  build/src/hal/Regs.o  build/src/hal/Timer.o  build/src/hal/Uart.o  build/src/lib/asm.o  build/src/lib/stdio.o  build/src/lib/stdlib.o  build/src/kernel/task.o -Wl,-Map=build/miniOS_arm.map -nostartfiles -nostdlib -nodefaultlibs -static -lgcc
+arm-none-eabi-objcopy -O binary build/miniOS_arm.axf build/miniOS_arm.bin
+make: Leaving directory '/home/juwonpee/projects/miniOS_arm'
+ 
